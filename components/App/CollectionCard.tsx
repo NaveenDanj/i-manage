@@ -5,6 +5,7 @@ import React from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
+import Colors from '../Colors';
 
 FontAwesome6;
 interface ICollectionProp {
@@ -55,14 +56,25 @@ const CollectionCard = () => {
           height: 260,
           borderRadius: 18,
           paddingHorizontal: 10,
-          paddingVertical: 20,
+          //   paddingVertical: 20,
+          paddingBottom: 20,
+          paddingTop: 10,
         }}>
-        <Text style={{fontSize: 20, fontWeight: '600'}}>
+        <Text
+          style={{fontSize: 20, fontWeight: '600', color: Colors.dark.text}}>
           # Sample Collection
         </Text>
 
-        <Text style={{fontSize: 15, marginTop: 20}}>Your balance</Text>
-        <Text style={{fontSize: 35, marginTop: 1, fontWeight: '700'}}>
+        <Text style={{fontSize: 15, marginTop: 20, color: Colors.dark.text}}>
+          Your balance
+        </Text>
+        <Text
+          style={{
+            fontSize: 35,
+            marginTop: 1,
+            fontWeight: '700',
+            color: Colors.dark.text,
+          }}>
           $12,869
         </Text>
 

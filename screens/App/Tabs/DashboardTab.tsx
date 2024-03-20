@@ -10,6 +10,7 @@ import {
 import CollectionCard from '../../../components/App/CollectionCard';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import TransactionItem from '../../../components/App/TransactionItem';
+import Colors from '../../../components/Colors';
 
 export default function TabOneScreen() {
   return (
@@ -79,6 +80,7 @@ export default function TabOneScreen() {
                 fontWeight: '700',
                 position: 'relative',
                 top: 10,
+                color: Colors.dark.text,
               }}>
               $12,869
             </Text>
@@ -88,6 +90,7 @@ export default function TabOneScreen() {
                 marginTop: 20,
                 position: 'relative',
                 top: -10,
+                color: Colors.dark.text,
               }}>
               Income
             </Text>
@@ -140,6 +143,7 @@ export default function TabOneScreen() {
                 fontWeight: '700',
                 position: 'relative',
                 top: 10,
+                color: Colors.dark.text,
               }}>
               $12,869
             </Text>
@@ -149,6 +153,7 @@ export default function TabOneScreen() {
                 marginTop: 20,
                 position: 'relative',
                 top: -10,
+                color: Colors.dark.text,
               }}>
               Expence
             </Text>
@@ -164,7 +169,13 @@ export default function TabOneScreen() {
           marginHorizontal: 10,
           marginTop: 30,
         }}>
-        <Text style={{marginVertical: 'auto', fontWeight: '600', fontSize: 20}}>
+        <Text
+          style={{
+            marginVertical: 'auto',
+            fontWeight: '600',
+            fontSize: 20,
+            color: Colors.dark.text,
+          }}>
           Transactions
         </Text>
         <Text
@@ -197,7 +208,13 @@ export default function TabOneScreen() {
             width: '50%',
             borderRadius: 30,
           }}>
-          <Text style={{fontSize: 15, fontWeight: '700', position: 'relative'}}>
+          <Text
+            style={{
+              fontSize: 15,
+              fontWeight: '700',
+              position: 'relative',
+              color: Colors.dark.text,
+            }}>
             Income
           </Text>
         </TouchableOpacity>
@@ -214,7 +231,13 @@ export default function TabOneScreen() {
             width: '50%',
             borderRadius: 30,
           }}>
-          <Text style={{fontSize: 15, fontWeight: '700', position: 'relative'}}>
+          <Text
+            style={{
+              fontSize: 15,
+              fontWeight: '700',
+              position: 'relative',
+              color: Colors.dark.text,
+            }}>
             Expense
           </Text>
         </TouchableOpacity>

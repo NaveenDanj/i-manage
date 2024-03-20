@@ -5,6 +5,7 @@ import DashboardTab from './Tabs/DashboardTab';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
 import IconOcticons from 'react-native-vector-icons/Octicons';
+import NotificationTab from './Tabs/NotificationTab';
 
 const Tab = createBottomTabNavigator();
 
@@ -29,10 +30,10 @@ const TabHome = () => {
         options={{
           title: '',
           // eslint-disable-next-line react/no-unstable-nested-components
-          tabBarIcon: () => <Icon name="bell" size={24} color="white" />,
+          tabBarIcon: () => <Icon name="bell" size={20} color="white" />,
         }}
         name="Notifications"
-        component={DashboardTab}
+        component={NotificationTab}
       />
 
       <Tab.Screen

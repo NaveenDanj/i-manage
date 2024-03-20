@@ -178,15 +178,17 @@ export default function TabOneScreen() {
           }}>
           Transactions
         </Text>
-        <Text
-          style={{
-            marginTop: 4,
-            fontWeight: '600',
-            fontSize: 13,
-            color: '#246BFD',
-          }}>
-          See All
-        </Text>
+        <TouchableOpacity>
+          <Text
+            style={{
+              marginTop: 4,
+              fontWeight: '600',
+              fontSize: 13,
+              color: '#246BFD',
+            }}>
+            See All
+          </Text>
+        </TouchableOpacity>
       </View>
 
       <View

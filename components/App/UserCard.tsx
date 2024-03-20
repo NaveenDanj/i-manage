@@ -2,6 +2,7 @@
 import {Image, Text, View} from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import React from 'react';
+import Colors from '../Colors';
 
 const UserCard = () => {
   return (
@@ -27,7 +28,13 @@ const UserCard = () => {
         />
 
         <View style={{marginVertical: 'auto', backgroundColor: '#1F222A'}}>
-          <Text style={{marginTop: 4, fontSize: 16, fontWeight: '600'}}>
+          <Text
+            style={{
+              marginTop: 4,
+              fontSize: 16,
+              fontWeight: '600',
+              color: Colors.dark.text,
+            }}>
             Andrew Ainsley
           </Text>
           <Text

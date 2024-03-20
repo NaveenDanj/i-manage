@@ -5,8 +5,9 @@ import CollectionCard from '../../../components/App/CollectionCard';
 import UserCard from '../../../components/App/UserCard';
 import OrganizationCard from '../../../components/App/OrganizationCard';
 import TransactionItem from '../../../components/App/TransactionItem';
+import Colors from '../../../components/Colors';
 
-const Organization = () => {
+const OrganizationTab = () => {
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
@@ -20,7 +21,13 @@ const Organization = () => {
           marginVertical: 30,
           marginTop: 10,
         }}>
-        <Text style={{marginVertical: 'auto', fontWeight: '600', fontSize: 20}}>
+        <Text
+          style={{
+            marginVertical: 'auto',
+            fontWeight: '600',
+            fontSize: 20,
+            color: Colors.dark.text,
+          }}>
           Organizations
         </Text>
         <Text
@@ -50,7 +57,13 @@ const Organization = () => {
           marginVertical: 30,
           marginTop: 30,
         }}>
-        <Text style={{marginVertical: 'auto', fontWeight: '600', fontSize: 20}}>
+        <Text
+          style={{
+            marginVertical: 'auto',
+            fontWeight: '600',
+            fontSize: 20,
+            color: Colors.dark.text,
+          }}>
           Collections
         </Text>
         <Text
@@ -85,7 +98,12 @@ const Organization = () => {
             marginTop: 30,
           }}>
           <Text
-            style={{marginVertical: 'auto', fontWeight: '600', fontSize: 20}}>
+            style={{
+              marginVertical: 'auto',
+              fontWeight: '600',
+              fontSize: 20,
+              color: Colors.dark.text,
+            }}>
             Users
           </Text>
           <Text
@@ -114,7 +132,13 @@ const Organization = () => {
           justifyContent: 'space-between',
           marginHorizontal: 10,
         }}>
-        <Text style={{marginVertical: 'auto', fontWeight: '600', fontSize: 20}}>
+        <Text
+          style={{
+            marginVertical: 'auto',
+            fontWeight: '600',
+            fontSize: 20,
+            color: Colors.dark.text,
+          }}>
           Transactions
         </Text>
         <Text
@@ -146,4 +170,4 @@ const Organization = () => {
   );
 };
 
-export default Organization;
+export default OrganizationTab;

@@ -3,6 +3,7 @@ import {Text, View} from 'react-native';
 import Octicons from 'react-native-vector-icons/Octicons';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import React from 'react';
+import Colors from '../Colors';
 
 interface IProp {
   selected: boolean;
@@ -43,7 +44,13 @@ const OrganizationCard = ({selected}: IProp) => {
         </View>
 
         <View style={{marginVertical: 'auto', backgroundColor: '#1F222A'}}>
-          <Text style={{marginTop: 4, fontSize: 16, fontWeight: '600'}}>
+          <Text
+            style={{
+              marginTop: 4,
+              fontSize: 16,
+              fontWeight: '600',
+              color: Colors.dark.text,
+            }}>
             Dupatha Boarding Place
           </Text>
           <Text

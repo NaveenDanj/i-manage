@@ -4,7 +4,8 @@ import React from 'react';
 import LottieView from 'lottie-react-native';
 import Colors from '../../components/Colors';
 
-const Login = () => {
+// @ts-ignore
+const Login = ({navigation}) => {
   return (
     <View style={styles.container}>
       <Text style={{fontSize: 30, fontWeight: '800', color: Colors.dark.text}}>
@@ -26,6 +27,7 @@ const Login = () => {
           paddingHorizontal: 30,
         }}>
         <TouchableOpacity
+          onPress={() => navigation.replace('dashboard')}
           style={{
             display: 'flex',
             flexDirection: 'row',

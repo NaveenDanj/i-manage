@@ -11,13 +11,14 @@ import React from 'react';
 import Login from './screens/Auth/Login';
 import TabHome from './screens/App/TabHome';
 import {DarkTheme} from '@react-navigation/native';
+import NameCard from './components/App/NameCard';
 
 const Stack = createNativeStackNavigator();
 
 function App(): React.JSX.Element {
   return (
     <NavigationContainer theme={DarkTheme}>
-      <Stack.Navigator>
+      <Stack.Navigator screenOptions={{header: () => <NameCard />}}>
         <Stack.Screen
           name="Home"
           component={Login}

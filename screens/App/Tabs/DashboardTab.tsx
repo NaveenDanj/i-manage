@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import CollectionCard from '../../../components/App/CollectionCard';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import TransactionItem from '@/components/App/TransactionItem';
+import TransactionItem from '../../../components/App/TransactionItem';
 
 export default function TabOneScreen() {
   return (

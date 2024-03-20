@@ -6,6 +6,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
 import IconOcticons from 'react-native-vector-icons/Octicons';
 import NotificationTab from './Tabs/NotificationTab';
+import UserTab from './Tabs/UserTab';
 
 const Tab = createBottomTabNavigator();
 
@@ -60,7 +61,7 @@ const TabHome = () => {
           tabBarIcon: () => <Icon name="user" size={24} color="white" />,
         }}
         name="Users"
-        component={DashboardTab}
+        component={UserTab}
       />
 
       <Tab.Screen

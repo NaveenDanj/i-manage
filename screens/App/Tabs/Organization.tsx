@@ -1,9 +1,9 @@
 /* eslint-disable react-native/no-inline-styles */
-import {ScrollView, StyleSheet, View, Text} from 'react-native';
+import {ScrollView, View, Text} from 'react-native';
 import React from 'react';
 import CollectionCard from '../../../components/App/CollectionCard';
 import UserCard from '../../../components/App/UserCard';
-import OrganizationCard from '@/components/App/OrganizationCard';
+import OrganizationCard from '../../../components/App/OrganizationCard';
 import TransactionItem from '../../../components/App/TransactionItem';
 
 const Organization = () => {
@@ -147,5 +147,3 @@ const Organization = () => {
 };
 
 export default Organization;
-
-const styles = StyleSheet.create({});

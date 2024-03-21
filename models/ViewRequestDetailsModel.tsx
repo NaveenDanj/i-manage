@@ -11,7 +11,7 @@ const ViewRequestDetailsModel = () => {
         flex: 1,
         paddingHorizontal: 10,
         paddingBottom: 30,
-        paddingTop: 20,
+        paddingTop: 50,
       }}>
       <View style={{borderRadius: 15, backgroundColor: '#1F222A', padding: 15}}>
         <View

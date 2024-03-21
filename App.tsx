@@ -16,6 +16,7 @@ import NameCard from './components/App/NameCard';
 import PayModel from './models/PayModel';
 import ViewRequestDetailsModel from './models/ViewRequestDetailsModel';
 import ConfirmPaymentModel from './models/ConfirmPaymentModel';
+import CollectionDetailsModel from './models/CollectionDetailsModel';
 
 const Stack = createNativeStackNavigator();
 
@@ -53,6 +54,12 @@ function App(): React.JSX.Element {
           name="ConfrimPayment"
           options={{title: 'Confirm Payment'}}
           component={ConfirmPaymentModel}
+        />
+
+        <Stack.Screen
+          name="CollectionDetails"
+          options={{title: 'Collection Details'}}
+          component={CollectionDetailsModel}
         />
       </Stack.Navigator>
     </NavigationContainer>

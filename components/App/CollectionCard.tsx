@@ -7,6 +7,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
 import Colors from '../Colors';
 import {useNavigation} from '@react-navigation/native';
+import Feather from 'react-native-vector-icons/Feather';
 
 FontAwesome6;
 interface ICollectionProp {
@@ -63,10 +64,23 @@ const CollectionCard = () => {
           paddingBottom: 20,
           paddingTop: 10,
         }}>
-        <Text
-          style={{fontSize: 20, fontWeight: '600', color: Colors.dark.text}}>
-          # Sample Collection
-        </Text>
+        <View
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}>
+          <Text
+            style={{fontSize: 20, fontWeight: '600', color: Colors.dark.text}}>
+            # Sample Collection
+          </Text>
+          <TouchableOpacity
+            // @ts-ignore
+            onPress={() => navigation.push('CollectionDetails')}>
+            <Feather name="external-link" color={'white'} size={16} />
+          </TouchableOpacity>
+        </View>
 
         <Text style={{fontSize: 15, marginTop: 20, color: Colors.dark.text}}>
           Your balance

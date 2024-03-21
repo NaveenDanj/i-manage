@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unstable-nested-components */
 /**
  * Sample React Native App
  * https://github.com/facebook/react-native
@@ -12,19 +13,33 @@ import Login from './screens/Auth/Login';
 import TabHome from './screens/App/TabHome';
 import {DarkTheme} from '@react-navigation/native';
 import NameCard from './components/App/NameCard';
+import PayModel from './models/PayModel';
 
 const Stack = createNativeStackNavigator();
 
 function App(): React.JSX.Element {
   return (
     <NavigationContainer theme={DarkTheme}>
-      <Stack.Navigator screenOptions={{header: () => <NameCard />}}>
+      <Stack.Navigator>
         <Stack.Screen
           name="Home"
           component={Login}
-          options={{title: 'Welcome', headerShown: false}}
+          options={{
+            title: 'Welcome',
+            headerShown: false,
+            header: () => <NameCard />,
+          }}
         />
-        <Stack.Screen name="dashboard" component={TabHome} />
+        <Stack.Screen
+          name="dashboard"
+          options={{header: () => <NameCard />}}
+          component={TabHome}
+        />
+        <Stack.Screen
+          name="PayModel"
+          options={{title: 'Payment Request'}}
+          component={PayModel}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

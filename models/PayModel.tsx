@@ -13,7 +13,8 @@ import React from 'react';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Colors from '../components/Colors';
 
-const PayModel = () => {
+// @ts-ignore
+const PayModel = ({navigation}) => {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -132,7 +133,7 @@ const PayModel = () => {
                     color: 'white',
                     fontSize: 16,
                     marginLeft: 10,
-                    fontWeight: '700',
+                    fontWeight: '600',
                   }}>
                   LKR
                 </Text>
@@ -193,6 +194,7 @@ const PayModel = () => {
           </View>
 
           <TouchableOpacity
+            onPress={() => navigation.push('RequestDetails')}
             style={{
               marginTop: 15,
               display: 'flex',

@@ -14,6 +14,7 @@ import TabHome from './screens/App/TabHome';
 import {DarkTheme} from '@react-navigation/native';
 import NameCard from './components/App/NameCard';
 import PayModel from './models/PayModel';
+import ViewRequestDetailsModel from './models/ViewRequestDetailsModel';
 
 const Stack = createNativeStackNavigator();
 
@@ -39,6 +40,12 @@ function App(): React.JSX.Element {
           name="PayModel"
           options={{title: 'Payment Request'}}
           component={PayModel}
+        />
+
+        <Stack.Screen
+          name="RequestDetails"
+          options={{title: 'Payment Request Details'}}
+          component={ViewRequestDetailsModel}
         />
       </Stack.Navigator>
     </NavigationContainer>

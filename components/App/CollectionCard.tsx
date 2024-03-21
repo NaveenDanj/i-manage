@@ -6,6 +6,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
 import Colors from '../Colors';
+import {useNavigation} from '@react-navigation/native';
 
 FontAwesome6;
 interface ICollectionProp {
@@ -15,6 +16,8 @@ interface ICollectionProp {
 }
 
 const CollectionCard = () => {
+  const navigation = useNavigation();
+
   const CollectionButton = ({name, icon, radius}: ICollectionProp) => {
     return (
       <TouchableOpacity
@@ -103,6 +106,8 @@ const CollectionCard = () => {
             radius={60}
             icon={
               <FontAwesome6
+                // @ts-ignore
+                onPress={() => navigation.push('ConfrimPayment')}
                 name="money-bill-transfer"
                 size={12}
                 color="#3979FD"

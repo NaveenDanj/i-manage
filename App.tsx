@@ -15,6 +15,7 @@ import {DarkTheme} from '@react-navigation/native';
 import NameCard from './components/App/NameCard';
 import PayModel from './models/PayModel';
 import ViewRequestDetailsModel from './models/ViewRequestDetailsModel';
+import ConfirmPaymentModel from './models/ConfirmPaymentModel';
 
 const Stack = createNativeStackNavigator();
 
@@ -46,6 +47,12 @@ function App(): React.JSX.Element {
           name="RequestDetails"
           options={{title: 'Payment Request Details'}}
           component={ViewRequestDetailsModel}
+        />
+
+        <Stack.Screen
+          name="ConfrimPayment"
+          options={{title: 'Confirm Payment'}}
+          component={ConfirmPaymentModel}
         />
       </Stack.Navigator>
     </NavigationContainer>

@@ -37,7 +37,7 @@ const OrganizationTab = () => {
             fontSize: 13,
             color: '#246BFD',
           }}>
-          Manage
+          Add
         </Text>
       </View>
 
@@ -73,7 +73,7 @@ const OrganizationTab = () => {
             fontSize: 13,
             color: '#246BFD',
           }}>
-          Manage
+          Add
         </Text>
       </View>
 

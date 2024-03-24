@@ -1,13 +1,16 @@
 /* eslint-disable react-native/no-inline-styles */
-import {ScrollView, View, Text} from 'react-native';
+import {ScrollView, View, Text, TouchableOpacity} from 'react-native';
 import React from 'react';
 import CollectionCard from '../../../components/App/CollectionCard';
 import UserCard from '../../../components/App/UserCard';
 import OrganizationCard from '../../../components/App/OrganizationCard';
 import TransactionItem from '../../../components/App/TransactionItem';
 import Colors from '../../../components/Colors';
+import {useNavigation} from '@react-navigation/native';
 
 const OrganizationTab = () => {
+  const navigation = useNavigation();
+
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
@@ -30,15 +33,18 @@ const OrganizationTab = () => {
           }}>
           Organizations
         </Text>
-        <Text
-          style={{
-            marginTop: 4,
-            fontWeight: '600',
-            fontSize: 13,
-            color: '#246BFD',
-          }}>
-          Add
-        </Text>
+        {/* @ts-ignore */}
+        <TouchableOpacity onPress={() => navigation.push('AddOrganization')}>
+          <Text
+            style={{
+              marginTop: 4,
+              fontWeight: '600',
+              fontSize: 13,
+              color: '#246BFD',
+            }}>
+            Add
+          </Text>
+        </TouchableOpacity>
       </View>
 
       <View style={{display: 'flex', gap: 20}}>

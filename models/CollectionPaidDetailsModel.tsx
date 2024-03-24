@@ -104,6 +104,7 @@ const CollectionPaidDetailsModel = () => {
         renderItem={UserCard}
         ListHeaderComponent={CollectionDetailModelHeader}
         ItemSeparatorComponent={Seperator}
+        showsVerticalScrollIndicator={false}
       />
     </View>
   );

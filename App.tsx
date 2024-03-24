@@ -18,7 +18,7 @@ import ViewRequestDetailsModel from './models/ViewRequestDetailsModel';
 import ConfirmPaymentModel from './models/ConfirmPaymentModel';
 import CollectionDetailsModel from './models/CollectionDetailsModel';
 import CollectionPaidDetailsModel from './models/CollectionPaidDetailsModel';
-import AddOrganization from './screens/App/AdditionalScreens/AddOrganization';
+import AddOrganization from './screens/App/AdditionalScreens/AddOrganizationDetails';
 
 const Stack = createNativeStackNavigator();
 

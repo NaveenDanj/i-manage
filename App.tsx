@@ -19,6 +19,7 @@ import ConfirmPaymentModel from './models/ConfirmPaymentModel';
 import CollectionDetailsModel from './models/CollectionDetailsModel';
 import CollectionPaidDetailsModel from './models/CollectionPaidDetailsModel';
 import AddOrganization from './screens/App/AdditionalScreens/AddOrganizationDetails';
+import CreateCollection from './screens/App/AdditionalScreens/CreateCollection';
 
 const Stack = createNativeStackNavigator();
 
@@ -74,6 +75,12 @@ function App(): React.JSX.Element {
           name="AddOrganization"
           options={{title: 'Add new Organization'}}
           component={AddOrganization}
+        />
+
+        <Stack.Screen
+          name="CreateCollection"
+          options={{title: 'Add new Collection'}}
+          component={CreateCollection}
         />
       </Stack.Navigator>
     </NavigationContainer>

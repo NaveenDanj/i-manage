@@ -72,15 +72,18 @@ const OrganizationTab = () => {
           }}>
           Collections
         </Text>
-        <Text
-          style={{
-            marginTop: 4,
-            fontWeight: '600',
-            fontSize: 13,
-            color: '#246BFD',
-          }}>
-          Add
-        </Text>
+        {/* @ts-ignore */}
+        <TouchableOpacity onPress={() => navigation.push('CreateCollection')}>
+          <Text
+            style={{
+              marginTop: 4,
+              fontWeight: '600',
+              fontSize: 13,
+              color: '#246BFD',
+            }}>
+            Add
+          </Text>
+        </TouchableOpacity>
       </View>
 
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>

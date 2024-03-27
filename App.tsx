@@ -20,69 +20,74 @@ import CollectionPaidDetailsModel from './models/CollectionPaidDetailsModel';
 import AddOrganization from './screens/App/AdditionalScreens/AddOrganizationDetails';
 import CreateCollection from './screens/App/AdditionalScreens/CreateCollection';
 
+import {store} from './store/index';
+import {Provider} from 'react-redux';
+
 const Stack = createNativeStackNavigator();
 
 function App(): React.JSX.Element {
   return (
-    <NavigationContainer theme={DarkTheme}>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Home"
-          component={Login}
-          options={{
-            title: 'Welcome',
-            headerShown: false,
-            header: () => <NameCard />,
-          }}
-        />
-        <Stack.Screen
-          name="dashboard"
-          options={{header: () => <NameCard />}}
-          component={TabHome}
-        />
-        <Stack.Screen
-          name="PayModel"
-          options={{title: 'Payment Request'}}
-          component={PayModel}
-        />
+    <Provider store={store}>
+      <NavigationContainer theme={DarkTheme}>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Home"
+            component={Login}
+            options={{
+              title: 'Welcome',
+              headerShown: false,
+              header: () => <NameCard />,
+            }}
+          />
+          <Stack.Screen
+            name="dashboard"
+            options={{header: () => <NameCard />}}
+            component={TabHome}
+          />
+          <Stack.Screen
+            name="PayModel"
+            options={{title: 'Payment Request'}}
+            component={PayModel}
+          />
 
-        <Stack.Screen
-          name="RequestDetails"
-          options={{title: 'Payment Request Details'}}
-          component={ViewRequestDetailsModel}
-        />
+          <Stack.Screen
+            name="RequestDetails"
+            options={{title: 'Payment Request Details'}}
+            component={ViewRequestDetailsModel}
+          />
 
-        <Stack.Screen
-          name="ConfrimPayment"
-          options={{title: 'Confirm Payment'}}
-          component={ConfirmPaymentModel}
-        />
+          <Stack.Screen
+            name="ConfrimPayment"
+            options={{title: 'Confirm Payment'}}
+            component={ConfirmPaymentModel}
+          />
 
-        <Stack.Screen
-          name="CollectionDetails"
-          options={{title: 'Collection Details'}}
-          component={CollectionDetailsModel}
-        />
+          <Stack.Screen
+            name="CollectionDetails"
+            options={{title: 'Collection Details'}}
+            component={CollectionDetailsModel}
+          />
 
-        <Stack.Screen
-          name="CollectionPaidDetails"
-          options={{title: '2024-03 #3 Details'}}
-          component={CollectionPaidDetailsModel}
-        />
+          <Stack.Screen
+            name="CollectionPaidDetails"
+            options={{title: '2024-03 #3 Details'}}
+            component={CollectionPaidDetailsModel}
+          />
 
-        <Stack.Screen
-          name="AddOrganization"
-          options={{title: 'Add new Organization'}}
-          component={AddOrganization}
-        />
+          <Stack.Screen
+            name="AddOrganization"
+            options={{title: 'Add new Organization'}}
+            component={AddOrganization}
+          />
 
-        <Stack.Screen
-          name="CreateCollection"
-          options={{title: 'Add new Collection'}}
-          component={CreateCollection}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+          <Stack.Screen
+            name="CreateCollection"
+            options={{title: 'Add new Collection'}}
+            component={CreateCollection}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
 

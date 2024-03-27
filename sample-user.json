@@ -1,0 +1,30 @@
+{"additionalUserInfo": {
+    "isNewUser": false, 
+    "profile": {
+        "aud": "396659194291-6n9nmc8r00k7h717f4sbeca8qigjkb2c.apps.googleusercontent.com",
+        "azp": "396659194291-f7kg9s1vf84g223q2iir4t22hohl1tuc.apps.googleusercontent.com",
+        "email": "naveenhettiwaththa@gmail.com",
+        "email_verified": true, "exp": 1711539316,
+        "family_name": "Hettiwaththa",
+        "given_name": "Naveen", "iat": 1711535716,
+        "iss": "https://accounts.google.com",
+        "name": "Naveen Hettiwaththa",
+        "picture": "https://lh3.googleusercontent.com/a/ACg8ocJz6M5exIJbZbV-4L8ndwarYVag1_RQpWnVhpob5-L8lQ=s96-c",
+        "sub": "112942810743870733642"
+     },
+     "providerId": "google.com"},
+    "user": {
+        "displayName": "Naveen Hettiwaththa",
+        "email": "naveenhettiwaththa@gmail.com",
+        "emailVerified": true,
+        "isAnonymous": false,
+        "metadata": [Object],
+        "multiFactor": [Object],
+        "phoneNumber": null,
+        "photoURL": "https://lh3.googleusercontent.com/a/ACg8ocJz6M5exIJbZbV-4L8ndwarYVag1_RQpWnVhpob5-L8lQ=s96-c",
+        "providerData": [Array],
+        "providerId": "firebase",
+        "tenantId": null, 
+        "uid": "q8ufYp9C0ahJg0ggxQc9WKO5SAf2"
+    }
+}    

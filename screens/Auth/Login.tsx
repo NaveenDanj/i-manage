@@ -1,11 +1,24 @@
 /* eslint-disable react-native/no-inline-styles */
-import {StyleSheet, TouchableOpacity, View, Text} from 'react-native';
+import {StyleSheet, TouchableOpacity, View, Text, Alert} from 'react-native';
 import React from 'react';
 import LottieView from 'lottie-react-native';
 import Colors from '../../components/Colors';
+import AuthService from '../../services/Auth.service';
+
+const handleLogin = async () => {
+  try {
+    const res = await AuthService.googleSignIn();
+    console.log(res);
+  } catch (err) {
+    Alert.alert(
+      'Authentication Faild',
+      'Authentication failed due to following error. ' + err + '',
+    );
+  }
+};
 
 // @ts-ignore
-const Login = ({navigation}) => {
+const Login = () => {
   return (
     <View style={styles.container}>
       <Text style={{fontSize: 30, fontWeight: '800', color: Colors.dark.text}}>
@@ -27,7 +40,8 @@ const Login = ({navigation}) => {
           paddingHorizontal: 30,
         }}>
         <TouchableOpacity
-          onPress={() => navigation.replace('dashboard')}
+          // onPress={() => navigation.replace('dashboard')}
+          onPress={handleLogin}
           style={{
             display: 'flex',
             flexDirection: 'row',

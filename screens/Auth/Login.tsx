@@ -1,9 +1,10 @@
 /* eslint-disable react-native/no-inline-styles */
 import {StyleSheet, TouchableOpacity, View, Text, Alert} from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import LottieView from 'lottie-react-native';
 import Colors from '../../components/Colors';
 import AuthService from '../../services/Auth.service';
+import {useNavigation} from '@react-navigation/native';
 
 const handleLogin = async () => {
   try {
@@ -19,6 +20,38 @@ const handleLogin = async () => {
 
 // @ts-ignore
 const Login = () => {
+  const [loading, setLoading] = useState<boolean>(true);
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    const checkSignInHandler = async () => {
+      setLoading(true);
+      const res = await AuthService.isSignedIn();
+      if (res) {
+        // @ts-ignore
+        navigation.replace('dashboard');
+        setLoading(false);
+      }
+    };
+
+    checkSignInHandler();
+  }, [navigation]);
+
+  if (loading) {
+    return (
+      <View
+        style={{
+          display: 'flex',
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: 'black',
+        }}>
+        <Text style={{color: 'white'}}>Loading...</Text>
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
       <Text style={{fontSize: 30, fontWeight: '800', color: Colors.dark.text}}>

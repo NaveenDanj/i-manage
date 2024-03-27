@@ -41,4 +41,27 @@ export default {
       message: '',
     };
   },
+
+  isSignedIn: async () => {
+    return await GoogleSignin.isSignedIn();
+  },
+
+  getCurrentUser: async () => {
+    return await GoogleSignin.getCurrentUser();
+  },
+
+  signOut: async () => {
+    try {
+      await GoogleSignin.signOut();
+      return {
+        success: true,
+        message: '',
+      };
+    } catch (error) {
+      return {
+        success: false,
+        message: error + '',
+      };
+    }
+  },
 };

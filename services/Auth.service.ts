@@ -2,6 +2,7 @@ import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import firestore from '@react-native-firebase/firestore';
 
 import auth from '@react-native-firebase/auth';
+import {User} from '../types';
 
 GoogleSignin.configure({
   webClientId:
@@ -15,13 +16,29 @@ export default {
     const googleCredential = auth.GoogleAuthProvider.credential(idToken);
     const userCred = await auth().signInWithCredential(googleCredential);
 
-    if (userCred.additionalUserInfo?.isNewUser) {
-      await firestore()
-        .collection('Users')
-        .doc(userCred.user.uid)
-        .set(userCred);
+    if (!userCred || !userCred.additionalUserInfo?.profile) {
+      return {
+        success: false,
+        message: 'User credentials not valid',
+      };
     }
 
-    return userCred;
+    if (userCred.additionalUserInfo?.isNewUser) {
+      const user: User = {
+        email: userCred.user.email + '',
+        given_name: userCred.additionalUserInfo.profile.given_name,
+        family_name: userCred.additionalUserInfo.profile.family_name,
+        name: userCred.user.displayName + '',
+        picture: userCred.user.photoURL + '',
+        phoneNumber: userCred.user.phoneNumber + '',
+        uid: userCred.user.uid,
+      };
+      await firestore().collection('Users').doc(userCred.user.uid).set(user);
+    }
+
+    return {
+      success: true,
+      message: '',
+    };
   },
 };

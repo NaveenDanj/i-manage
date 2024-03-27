@@ -4,10 +4,13 @@ import {Image, View, Text, Pressable} from 'react-native';
 import Colors from '../Colors';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {useNavigation} from '@react-navigation/native';
+import {useSelector} from 'react-redux';
+import {RootState} from '../../store';
 
 // @ts-ignore
 function NameCard() {
   const navigation = useNavigation();
+  const currentUser = useSelector((state: RootState) => state.user.currentUser);
 
   return (
     <View
@@ -25,7 +28,7 @@ function NameCard() {
           <Image
             style={{width: 40, height: 40, borderRadius: 20}}
             source={{
-              uri: 'https://avatars.githubusercontent.com/u/48654030?v=4',
+              uri: currentUser?.picture,
             }}
           />
         </View>
@@ -41,7 +44,7 @@ function NameCard() {
           </Text>
           <Text
             style={{fontSize: 16, fontWeight: '600', color: Colors.dark.text}}>
-            Andrew Ainsley
+            {currentUser?.name}
           </Text>
         </View>
       </View>

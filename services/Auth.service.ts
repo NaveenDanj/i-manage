@@ -47,7 +47,20 @@ export default {
   },
 
   getCurrentUser: async () => {
-    return await GoogleSignin.getCurrentUser();
+    try {
+      const res = await GoogleSignin.getCurrentUser();
+
+      return {
+        success: true,
+        user: res,
+      };
+    } catch (err) {
+      return {
+        success: false,
+        user: null,
+        message: 'Error while fetching current user Information',
+      };
+    }
   },
 
   signOut: async () => {

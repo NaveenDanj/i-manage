@@ -5,6 +5,9 @@ import LottieView from 'lottie-react-native';
 import Colors from '../../components/Colors';
 import AuthService from '../../services/Auth.service';
 import {useNavigation} from '@react-navigation/native';
+import {useDispatch} from 'react-redux';
+import {setUser} from '../../store/UserSlice';
+import {User} from '../../types';
 
 const handleLogin = async () => {
   try {
@@ -22,20 +25,46 @@ const handleLogin = async () => {
 const Login = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const navigation = useNavigation();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const checkSignInHandler = async () => {
-      setLoading(true);
       const res = await AuthService.isSignedIn();
+      console.log('res', res);
       if (res) {
+        const fetchCurrentUser = await AuthService.getCurrentUser();
+        console.log(fetchCurrentUser);
+        if (fetchCurrentUser.success && fetchCurrentUser.user) {
+          const user: User = {
+            email: fetchCurrentUser.user.user.email,
+            given_name: fetchCurrentUser.user.user.givenName + '',
+            family_name: fetchCurrentUser.user.user.familyName + '',
+            name: fetchCurrentUser.user.user.name + '',
+            picture: fetchCurrentUser.user.user.photo + '',
+            phoneNumber: fetchCurrentUser.user.user.email,
+            uid: fetchCurrentUser.user.user.id,
+          };
+
+          dispatch(setUser(user));
+          // @ts-ignore
+          navigation.replace('dashboard');
+          setLoading(false);
+          return;
+        } else {
+          // @ts-ignore-
+          setLoading(false);
+          return;
+        }
+      } else {
         // @ts-ignore
-        navigation.replace('dashboard');
         setLoading(false);
+
+        return;
       }
     };
 
     checkSignInHandler();
-  }, [navigation]);
+  }, [dispatch, navigation]);
 
   if (loading) {
     return (

@@ -157,9 +157,11 @@ const UserTab = () => {
               justifyContent: 'center',
               alignItems: 'center',
               padding: 20,
-              backgroundColor: '#246BFD',
+              backgroundColor: 'black',
               width: '100%',
               borderRadius: 30,
+              borderWidth: 2,
+              borderColor: 'red',
             }}>
             <Text
               style={{

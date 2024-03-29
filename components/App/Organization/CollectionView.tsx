@@ -1,23 +1,22 @@
 /* eslint-disable react-native/no-inline-styles */
-import {Text, TouchableOpacity, View} from 'react-native';
+import {Text, View, TouchableOpacity} from 'react-native';
 import React from 'react';
 import Colors from '../../Colors';
-// import OrganizationCard from '../OrganizationCard';
-import Octicons from 'react-native-vector-icons/Octicons';
 import {useNavigation} from '@react-navigation/native';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-const OrganizationView = () => {
+const CollectionView = () => {
   const navigation = useNavigation();
 
   return (
-    <View>
+    <>
       <View
         style={{
           display: 'flex',
           flexDirection: 'row',
           justifyContent: 'space-between',
           marginVertical: 30,
-          marginTop: 10,
+          marginTop: 30,
         }}>
         <Text
           style={{
@@ -26,10 +25,10 @@ const OrganizationView = () => {
             fontSize: 20,
             color: Colors.dark.text,
           }}>
-          Organizations
+          Collections
         </Text>
         {/* @ts-ignore */}
-        <TouchableOpacity onPress={() => navigation.push('AddOrganization')}>
+        <TouchableOpacity onPress={() => navigation.push('CreateCollection')}>
           <Text
             style={{
               marginTop: 4,
@@ -50,7 +49,7 @@ const OrganizationView = () => {
           gap: 20,
           padding: 50,
         }}>
-        <Octicons name="organization" size={45} color="#226BFD" />
+        <MaterialIcons name="collections-bookmark" size={45} color="#226BFD" />
         <Text style={{color: 'white', fontSize: 15, fontWeight: '600'}}>
           List is currently empty
         </Text>
@@ -61,19 +60,22 @@ const OrganizationView = () => {
             fontSize: 12,
             textAlign: 'center',
           }}>
-          Create new organization by click on the Add button and fill out
-          required information.
+          Create new collection by click on the Add button and fill out required
+          information.
         </Text>
       </View>
 
-      {/* <View style={{display: 'flex', gap: 20}}>
-        <OrganizationCard selected={true} />
-        <OrganizationCard selected={false} />
-        <OrganizationCard selected={false} />
-        <OrganizationCard selected={false} />
-      </View> */}
-    </View>
+      {/* <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+        <CollectionCard />
+        <CollectionCard />
+        <CollectionCard />
+        <CollectionCard />
+        <CollectionCard />
+        <CollectionCard />
+        <CollectionCard />
+      </ScrollView> */}
+    </>
   );
 };
 
-export default OrganizationView;
+export default CollectionView;

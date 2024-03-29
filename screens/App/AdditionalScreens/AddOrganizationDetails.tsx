@@ -74,9 +74,13 @@ const headerComponent = () => {
         }}
       />
 
+      <Text style={{color: 'white', fontSize: 18, marginTop: 20}}>
+        Select users for this organization
+      </Text>
+
       <View
         style={{
-          marginTop: 40,
+          marginTop: 20,
           gap: 10,
           padding: 2,
           paddingHorizontal: 8,

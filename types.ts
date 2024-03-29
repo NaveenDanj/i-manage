@@ -6,6 +6,7 @@ export type User = {
   picture: string;
   phoneNumber: string;
   uid: string;
+  organizations: string[];
 };
 
 export type Organization = {

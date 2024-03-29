@@ -1,71 +1,27 @@
 /* eslint-disable react-native/no-inline-styles */
-import {ScrollView, View, Text, TouchableOpacity} from 'react-native';
+import {ScrollView, View, Text} from 'react-native';
 import React from 'react';
-import CollectionCard from '../../../components/App/CollectionCard';
 import UserCard from '../../../components/App/UserCard';
 import TransactionItem from '../../../components/App/TransactionItem';
 import Colors from '../../../components/Colors';
-import {useNavigation} from '@react-navigation/native';
 import OrganizationView from '../../../components/App/Organization/OrganizationView';
+import CollectionView from '../../../components/App/Organization/CollectionView';
 
 const OrganizationTab = () => {
-  const navigation = useNavigation();
-
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
       style={{flex: 1, paddingHorizontal: 10, paddingVertical: 20}}>
       <OrganizationView />
 
-      <View
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          marginHorizontal: 10,
-          marginVertical: 30,
-          marginTop: 30,
-        }}>
-        <Text
-          style={{
-            marginVertical: 'auto',
-            fontWeight: '600',
-            fontSize: 20,
-            color: Colors.dark.text,
-          }}>
-          Collections
-        </Text>
-        {/* @ts-ignore */}
-        <TouchableOpacity onPress={() => navigation.push('CreateCollection')}>
-          <Text
-            style={{
-              marginTop: 4,
-              fontWeight: '600',
-              fontSize: 13,
-              color: '#246BFD',
-            }}>
-            Add
-          </Text>
-        </TouchableOpacity>
-      </View>
+      <CollectionView />
 
-      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-        <CollectionCard />
-        <CollectionCard />
-        <CollectionCard />
-        <CollectionCard />
-        <CollectionCard />
-        <CollectionCard />
-        <CollectionCard />
-      </ScrollView>
-
-      <View style={{paddingHorizontal: 10, paddingVertical: 20}}>
+      <View style={{paddingVertical: 20}}>
         <View
           style={{
             display: 'flex',
             flexDirection: 'row',
             justifyContent: 'space-between',
-            marginHorizontal: 10,
             marginVertical: 30,
             marginTop: 30,
           }}>
@@ -102,7 +58,6 @@ const OrganizationTab = () => {
           display: 'flex',
           flexDirection: 'row',
           justifyContent: 'space-between',
-          marginHorizontal: 10,
         }}>
         <Text
           style={{
@@ -128,7 +83,6 @@ const OrganizationTab = () => {
         style={{
           display: 'flex',
           flexDirection: 'column',
-          marginHorizontal: 10,
           marginVertical: 30,
           gap: 20,
         }}>

@@ -30,6 +30,7 @@ const Login = () => {
           picture: fetchCurrentUser.user.user.photo + '',
           phoneNumber: fetchCurrentUser.user.user.email,
           uid: fetchCurrentUser.user.user.id,
+          organizations: [],
         };
 
         dispatch(setUser(user));

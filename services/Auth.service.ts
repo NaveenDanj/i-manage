@@ -32,6 +32,7 @@ export default {
         picture: userCred.user.photoURL + '',
         phoneNumber: userCred.user.phoneNumber + '',
         uid: userCred.user.uid,
+        organizations: [],
       };
       await firestore().collection('Users').doc(userCred.user.uid).set(user);
     }

@@ -3,10 +3,10 @@ import {ScrollView, View, Text, TouchableOpacity} from 'react-native';
 import React from 'react';
 import CollectionCard from '../../../components/App/CollectionCard';
 import UserCard from '../../../components/App/UserCard';
-import OrganizationCard from '../../../components/App/OrganizationCard';
 import TransactionItem from '../../../components/App/TransactionItem';
 import Colors from '../../../components/Colors';
 import {useNavigation} from '@react-navigation/native';
+import OrganizationView from '../../../components/App/Organization/OrganizationView';
 
 const OrganizationTab = () => {
   const navigation = useNavigation();
@@ -15,44 +15,7 @@ const OrganizationTab = () => {
     <ScrollView
       showsVerticalScrollIndicator={false}
       style={{flex: 1, paddingHorizontal: 10, paddingVertical: 20}}>
-      <View
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          marginHorizontal: 10,
-          marginVertical: 30,
-          marginTop: 10,
-        }}>
-        <Text
-          style={{
-            marginVertical: 'auto',
-            fontWeight: '600',
-            fontSize: 20,
-            color: Colors.dark.text,
-          }}>
-          Organizations
-        </Text>
-        {/* @ts-ignore */}
-        <TouchableOpacity onPress={() => navigation.push('AddOrganization')}>
-          <Text
-            style={{
-              marginTop: 4,
-              fontWeight: '600',
-              fontSize: 13,
-              color: '#246BFD',
-            }}>
-            Add
-          </Text>
-        </TouchableOpacity>
-      </View>
-
-      <View style={{display: 'flex', gap: 20}}>
-        <OrganizationCard selected={true} />
-        <OrganizationCard selected={false} />
-        <OrganizationCard selected={false} />
-        <OrganizationCard selected={false} />
-      </View>
+      <OrganizationView />
 
       <View
         style={{

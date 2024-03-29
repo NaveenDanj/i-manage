@@ -53,6 +53,7 @@ export default {
       return {
         success: true,
         user: res,
+        message: '',
       };
     } catch (err) {
       return {

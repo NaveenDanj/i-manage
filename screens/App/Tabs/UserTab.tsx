@@ -13,8 +13,21 @@ import {
 
 import Entypo from 'react-native-vector-icons/Entypo';
 import Colors from '../../../components/Colors';
+import AuthService from '../../../services/Auth.service';
+import {useNavigation} from '@react-navigation/native';
+import {useSelector} from 'react-redux';
+import {RootState} from '../../../store';
 
 const UserTab = () => {
+  const navigation = useNavigation();
+  const currentUser = useSelector((state: RootState) => state.user.currentUser);
+
+  const handleLogout = async () => {
+    await AuthService.signOut();
+    // @ts-ignore
+    navigation.replace('Home');
+  };
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -45,32 +58,18 @@ const UserTab = () => {
             justifyContent: 'center',
             alignItems: 'center',
             width: '100%',
-            marginTop: 50,
+            marginTop: 30,
           }}>
           <Image
             style={{
-              borderColor: '#246BFD',
-              borderWidth: 3,
               width: 150,
               height: 150,
               borderRadius: 75,
             }}
             source={{
-              uri: 'https://avatars.githubusercontent.com/u/48654030?v=4',
+              uri: currentUser?.picture,
             }}
           />
-
-          <TouchableOpacity
-            style={{
-              backgroundColor: '#246BFD',
-              padding: 5,
-              borderRadius: 3,
-              position: 'relative',
-              top: -28,
-              left: 50,
-            }}>
-            <Entypo name="edit" size={12} color="white" />
-          </TouchableOpacity>
         </View>
 
         <View
@@ -80,7 +79,7 @@ const UserTab = () => {
             justifyContent: 'center',
             alignItems: 'center',
             width: '100%',
-            marginTop: 20,
+            marginTop: 40,
           }}>
           <View
             style={{
@@ -94,6 +93,8 @@ const UserTab = () => {
               borderRadius: 10,
             }}>
             <TextInput
+              readOnly={true}
+              value={currentUser?.name}
               placeholderTextColor={'gray'}
               style={{flex: 1, color: 'white'}}
               placeholder="Your Full name"
@@ -114,6 +115,8 @@ const UserTab = () => {
               borderRadius: 10,
             }}>
             <TextInput
+              readOnly={true}
+              value={currentUser?.email}
               placeholderTextColor={'gray'}
               style={{flex: 1, color: 'white'}}
               placeholder="Email"
@@ -138,15 +141,18 @@ const UserTab = () => {
               borderRadius: 10,
             }}>
             <TextInput
+              readOnly={true}
+              value={currentUser?.uid}
               placeholderTextColor={'gray'}
               style={{flex: 1, color: 'white'}}
-              placeholder="Your phone"
+              placeholder="Your i-Manage user ID"
             />
           </View>
 
           <TouchableOpacity
+            onPress={handleLogout}
             style={{
-              marginTop: 15,
+              marginTop: 5,
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
@@ -162,7 +168,7 @@ const UserTab = () => {
                 position: 'relative',
                 color: Colors.dark.text,
               }}>
-              Update
+              Logout
             </Text>
           </TouchableOpacity>
         </View>

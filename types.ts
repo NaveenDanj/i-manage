@@ -8,6 +8,17 @@ export type User = {
   uid: string;
 };
 
+export type Organization = {
+  uid: string;
+  name: string;
+  users: {
+    [userId: string]: _User;
+  };
+  collections: {
+    [collectionId: string]: boolean;
+  };
+};
+
 export type Collection = {
   organizationId: string;
   name: string;

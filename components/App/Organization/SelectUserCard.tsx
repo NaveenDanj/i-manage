@@ -1,12 +1,26 @@
 /* eslint-disable react-native/no-inline-styles */
-import {Image, Text, View} from 'react-native';
-import React from 'react';
+import {Image, Text, TouchableOpacity, View} from 'react-native';
+import React, {useState} from 'react';
 import Colors from '../../Colors';
 import Fontisto from 'react-native-vector-icons/Fontisto';
+import {User} from '../../../types';
 
-const SelectUserCard = () => {
+type IProp = {
+  user: User;
+  setUsers: any;
+};
+
+const SelectUserCard = ({user, setUsers}: IProp) => {
+  const [selected, setSelected] = useState<boolean>(false);
+
+  const handleSelected = async () => {
+    setSelected(!selected);
+    setUsers(user);
+  };
+
   return (
-    <View
+    <TouchableOpacity
+      onPress={handleSelected}
       style={{
         backgroundColor: '#1F222A',
         padding: 15,
@@ -14,6 +28,8 @@ const SelectUserCard = () => {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
+        borderWidth: selected ? 2 : 0,
+        borderColor: selected ? '#226BFD' : '',
       }}>
       <View
         style={{
@@ -24,7 +40,7 @@ const SelectUserCard = () => {
         }}>
         <Image
           style={{width: 50, height: 50, borderRadius: 25}}
-          source={{uri: 'https://avatars.githubusercontent.com/u/48654030?v=4'}}
+          source={{uri: user.picture}}
         />
 
         <View style={{marginVertical: 'auto', backgroundColor: '#1F222A'}}>
@@ -35,7 +51,7 @@ const SelectUserCard = () => {
               fontWeight: '600',
               color: Colors.dark.text,
             }}>
-            Andrew Ainsley
+            {user.name}
           </Text>
           <Text
             style={{
@@ -44,7 +60,7 @@ const SelectUserCard = () => {
               fontSize: 12,
               fontWeight: '600',
             }}>
-            naveenhettiwaththa@gmail.com
+            {user.email}
           </Text>
         </View>
       </View>
@@ -56,9 +72,13 @@ const SelectUserCard = () => {
           backgroundColor: '#1F222A',
           marginVertical: 'auto',
         }}>
-        <Fontisto name="radio-btn-passive" size={24} color="#226BFD" />
+        {selected ? (
+          <Fontisto name="radio-btn-active" size={24} color="#226BFD" />
+        ) : (
+          <Fontisto name="radio-btn-passive" size={24} color="#226BFD" />
+        )}
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

@@ -79,4 +79,30 @@ export default {
       };
     }
   },
+
+  searchUser: async (query: string) => {
+    try {
+      const res = await firestore()
+        .collection('Users')
+        .where('email', '==', query)
+        .get();
+
+      if (res.docs.length === 0) {
+        return {
+          success: true,
+          user: null,
+        };
+      }
+
+      return {
+        success: true,
+        user: res.docs[0].data() as User,
+      };
+    } catch (error) {
+      return {
+        success: false,
+        users: [],
+      };
+    }
+  },
 };

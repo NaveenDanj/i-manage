@@ -1,156 +1,41 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
-import {
-  FlatList,
-  KeyboardAvoidingView,
-  Platform,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import Colors from '../../../components/Colors';
-import Octicons from 'react-native-vector-icons/Octicons';
+import {FlatList, KeyboardAvoidingView, Platform, View} from 'react-native';
 import AddOrganizationSetp1 from '../../../components/App/Organization/AddOrganizationSetp1';
 import SelectUserCard from '../../../components/App/Organization/SelectUserCard';
+import SearchUserHeader from '../../../components/App/Organization/SearchUserHeader';
+import {User} from '../../../types';
+import {useSelector} from 'react-redux';
+import {RootState} from '../../../store';
+import SearchUserFooter from '../../../components/App/Organization/SearchUserFooter';
 
 const Seperator = () => {
   return <View style={{padding: 10}} />;
 };
 
-const headerComponent = () => {
-  return (
-    <View style={{paddingBottom: 40}}>
-      <View
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          width: '100%',
-          marginTop: 50,
-        }}>
-        <View
-          style={{
-            backgroundColor: '#27A878',
-            padding: 25,
-            borderRadius: 100,
-          }}>
-          <Octicons name="organization" size={30} color={'white'} />
-        </View>
-      </View>
-
-      <View
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          width: '100%',
-          marginTop: 20,
-        }}>
-        <Text
-          style={{
-            fontSize: 24,
-            fontWeight: '700',
-            color: Colors.dark.text,
-          }}>
-          Create new Organization
-        </Text>
-        <Text
-          style={{
-            fontSize: 13,
-            marginTop: 5,
-            color: Colors.dark.text,
-            textAlign: 'center',
-          }}>
-          Start by creating your organization to manage finances efficiently and
-          collaborate seamlessly with your team.
-        </Text>
-      </View>
-
-      <View
-        style={{
-          marginTop: 20,
-          borderTopWidth: 1,
-          borderColor: 'rgba(127,127,127 , 0.5)',
-        }}
-      />
-
-      <Text style={{color: 'white', fontSize: 18, marginTop: 20}}>
-        Select users for this organization
-      </Text>
-
-      <View
-        style={{
-          marginTop: 20,
-          gap: 10,
-          padding: 2,
-          paddingHorizontal: 8,
-          display: 'flex',
-          flexDirection: 'row',
-          width: '100%',
-          justifyContent: 'space-between',
-          backgroundColor: '#1F222A',
-          borderRadius: 10,
-        }}>
-        <TextInput
-          placeholderTextColor={'gray'}
-          style={{flex: 1, color: 'white'}}
-          placeholder="Search user by email"
-        />
-      </View>
-
-      <FlatList
-        style={{marginTop: 40}}
-        data={[1, 2]}
-        renderItem={SelectUserCard}
-        ItemSeparatorComponent={Seperator}
-        showsVerticalScrollIndicator={false}
-      />
-
-      <View
-        style={{
-          marginTop: 40,
-          borderTopWidth: 1,
-          borderColor: 'rgba(127,127,127 , 0.5)',
-        }}
-      />
-    </View>
-  );
-};
-
-const footerComponent = () => {
-  return (
-    <TouchableOpacity
-      style={{
-        marginTop: 45,
-        marginBottom: 20,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 20,
-        backgroundColor: '#246BFD',
-        width: '100%',
-        borderRadius: 30,
-      }}>
-      <Text
-        style={{
-          fontSize: 15,
-          fontWeight: '700',
-          position: 'relative',
-          color: Colors.dark.text,
-        }}>
-        Save
-      </Text>
-    </TouchableOpacity>
-  );
-};
-
 const AddOrganizationDetails = () => {
   const [page, setPage] = useState(0);
   const [name, setName] = useState<string>('');
+  const [users, setUsers] = useState<User[]>([]);
+  const currentUser = useSelector((state: RootState) => state.user.currentUser);
 
   const handleNext = () => {
     setPage(1);
+  };
+
+  const handelSetUsers = async (user: User) => {
+    for (let i = 0; i < users.length; i++) {
+      if (users[i].email === user.email) {
+        return;
+      }
+    }
+
+    if (currentUser?.email === user.email) {
+      return;
+    }
+
+    const l = [...users, user];
+    setUsers(l);
   };
 
   return (
@@ -165,12 +50,19 @@ const AddOrganizationDetails = () => {
         {page === 1 && (
           <View>
             <FlatList
-              data={[1, 2, 3, 4]}
-              renderItem={SelectUserCard}
+              data={users}
+              renderItem={item => (
+                <SelectUserCard user={item.item} setUsers={handelSetUsers} />
+              )}
               ItemSeparatorComponent={Seperator}
               showsVerticalScrollIndicator={false}
-              ListHeaderComponent={headerComponent}
-              ListFooterComponent={footerComponent}
+              // eslint-disable-next-line react/no-unstable-nested-components
+              ListHeaderComponent={_item => (
+                <SearchUserHeader handleSetUsers={handelSetUsers} />
+              )}
+              ListFooterComponent={
+                <SearchUserFooter users={users} name={name} />
+              }
             />
           </View>
         )}

@@ -1,45 +1,11 @@
 /* eslint-disable react-native/no-inline-styles */
-import {
-  FlatList,
-  KeyboardAvoidingView,
-  Platform,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {FlatList, KeyboardAvoidingView, Platform, View} from 'react-native';
 import React, {useState} from 'react';
-import Colors from '../../../components/Colors';
 import UserCard from '../../../components/App/UserCard';
 import CreateCollectionPage1 from '../../../components/App/Collection/CreateCollectionPage1';
 import CreateCollectionPage2 from '../../../components/App/Collection/CreateCollectionPage2';
 import ListHeaderComponent from '../../../components/App/Collection/ListHeaderComponent';
-
-const footerComponent = () => {
-  return (
-    <TouchableOpacity
-      style={{
-        marginTop: 45,
-        marginBottom: 20,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 20,
-        backgroundColor: '#246BFD',
-        width: '100%',
-        borderRadius: 30,
-      }}>
-      <Text
-        style={{
-          fontSize: 15,
-          fontWeight: '700',
-          position: 'relative',
-          color: Colors.dark.text,
-        }}>
-        Save
-      </Text>
-    </TouchableOpacity>
-  );
-};
+import ListFooterComponent from '../../../components/App/Collection/ListFooterComponent';
 
 const Seperator = () => {
   return <View style={{padding: 10}} />;
@@ -69,7 +35,7 @@ const CreateCollection = () => {
               ItemSeparatorComponent={Seperator}
               showsVerticalScrollIndicator={false}
               ListHeaderComponent={ListHeaderComponent}
-              ListFooterComponent={footerComponent}
+              ListFooterComponent={ListFooterComponent}
               ListHeaderComponentStyle={{paddingBottom: 20}}
             />
           </View>

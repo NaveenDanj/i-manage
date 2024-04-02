@@ -9,79 +9,10 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 import Colors from '../../../components/Colors';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import UserCard from '../../../components/App/UserCard';
 import CreateCollectionPage1 from '../../../components/App/Collection/CreateCollectionPage1';
 import CreateCollectionPage2 from '../../../components/App/Collection/CreateCollectionPage2';
-
-const PageHeaderList = () => {
-  return (
-    <>
-      <View
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          width: '100%',
-          marginTop: 50,
-        }}>
-        <View
-          style={{
-            backgroundColor: '#226AFA',
-            padding: 25,
-            borderRadius: 100,
-          }}>
-          <MaterialIcons
-            name="collections-bookmark"
-            size={30}
-            color={'white'}
-          />
-        </View>
-      </View>
-
-      <View
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          width: '100%',
-          marginTop: 20,
-        }}>
-        <Text
-          style={{
-            fontSize: 24,
-            fontWeight: '700',
-            color: Colors.dark.text,
-          }}>
-          Create new Collection
-        </Text>
-        <Text
-          style={{
-            fontSize: 13,
-            marginTop: 5,
-            color: Colors.dark.text,
-            textAlign: 'center',
-          }}>
-          Effortlessly manage your finances by creating collections, enabling
-          efficient tracking and collaboration for expenses, incomes, and
-          payments within your organization.
-        </Text>
-      </View>
-
-      <View
-        style={{
-          marginTop: 20,
-          borderTopWidth: 1,
-          borderColor: 'rgba(127,127,127 , 0.5)',
-        }}
-      />
-
-      <Text style={{color: 'white', fontSize: 18, marginTop: 20}}>
-        Select users for this collection
-      </Text>
-    </>
-  );
-};
+import ListHeaderComponent from '../../../components/App/Collection/ListHeaderComponent';
 
 const footerComponent = () => {
   return (
@@ -137,7 +68,7 @@ const CreateCollection = () => {
               renderItem={UserCard}
               ItemSeparatorComponent={Seperator}
               showsVerticalScrollIndicator={false}
-              ListHeaderComponent={PageHeaderList}
+              ListHeaderComponent={ListHeaderComponent}
               ListFooterComponent={footerComponent}
               ListHeaderComponentStyle={{paddingBottom: 20}}
             />

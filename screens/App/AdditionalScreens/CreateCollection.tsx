@@ -12,71 +12,8 @@ import React, {useState} from 'react';
 import Colors from '../../../components/Colors';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import UserCard from '../../../components/App/UserCard';
-
-const PageHeader = () => {
-  return (
-    <>
-      <View
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          width: '100%',
-          marginTop: 50,
-        }}>
-        <View
-          style={{
-            backgroundColor: '#226AFA',
-            padding: 25,
-            borderRadius: 100,
-          }}>
-          <MaterialIcons
-            name="collections-bookmark"
-            size={30}
-            color={'white'}
-          />
-        </View>
-      </View>
-
-      <View
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          width: '100%',
-          marginTop: 20,
-        }}>
-        <Text
-          style={{
-            fontSize: 24,
-            fontWeight: '700',
-            color: Colors.dark.text,
-          }}>
-          Create new Collection
-        </Text>
-        <Text
-          style={{
-            fontSize: 13,
-            marginTop: 5,
-            color: Colors.dark.text,
-            textAlign: 'center',
-          }}>
-          Effortlessly manage your finances by creating collections, enabling
-          efficient tracking and collaboration for expenses, incomes, and
-          payments within your organization.
-        </Text>
-      </View>
-
-      <View
-        style={{
-          marginTop: 20,
-          borderTopWidth: 1,
-          borderColor: 'rgba(127,127,127 , 0.5)',
-        }}
-      />
-    </>
-  );
-};
+import CreateCollectionPage1 from '../../../components/App/Collection/CreateCollectionPage1';
+import PageHeader from '../../../components/App/Collection/PageHeader';
 
 const PageHeaderList = () => {
   return (
@@ -190,87 +127,7 @@ const CreateCollection = () => {
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={{flex: 1}}>
       <View style={{paddingHorizontal: 10, paddingBottom: 30}}>
-        {page === 0 && (
-          <View>
-            <PageHeader />
-
-            <View style={{marginTop: 35}}>
-              <View style={{display: 'flex', gap: 10}}>
-                <Text style={{color: 'white', fontSize: 15}}>
-                  Collection Name
-                </Text>
-                <View
-                  style={{
-                    gap: 10,
-                    padding: 2,
-                    paddingHorizontal: 8,
-                    display: 'flex',
-                    flexDirection: 'row',
-                    width: '100%',
-                    justifyContent: 'space-between',
-                    backgroundColor: '#1F222A',
-                    borderRadius: 10,
-                  }}>
-                  <TextInput
-                    placeholderTextColor={'gray'}
-                    style={{flex: 1, color: 'white'}}
-                    placeholder="Enter the collection name"
-                  />
-                </View>
-              </View>
-            </View>
-
-            <View style={{marginTop: 15}}>
-              <View style={{display: 'flex', gap: 10}}>
-                <Text style={{color: 'white', fontSize: 15}}>
-                  Installment Amount
-                </Text>
-                <View
-                  style={{
-                    gap: 10,
-                    padding: 2,
-                    paddingHorizontal: 8,
-                    display: 'flex',
-                    flexDirection: 'row',
-                    width: '100%',
-                    justifyContent: 'space-between',
-                    backgroundColor: '#1F222A',
-                    borderRadius: 10,
-                  }}>
-                  <TextInput
-                    inputMode="numeric"
-                    placeholderTextColor={'gray'}
-                    style={{flex: 1, color: 'white'}}
-                    placeholder="Set the installment amount"
-                  />
-                </View>
-              </View>
-            </View>
-
-            <TouchableOpacity
-              onPress={handleNext}
-              style={{
-                marginTop: 45,
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                padding: 20,
-                backgroundColor: '#246BFD',
-                width: '100%',
-                borderRadius: 30,
-              }}>
-              <Text
-                style={{
-                  fontSize: 15,
-                  fontWeight: '700',
-                  position: 'relative',
-                  color: Colors.dark.text,
-                }}>
-                Next
-              </Text>
-            </TouchableOpacity>
-          </View>
-        )}
+        {page === 0 && <CreateCollectionPage1 handleNext={handleNext} />}
 
         {page === 1 && (
           <View>

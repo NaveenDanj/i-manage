@@ -3,8 +3,13 @@ import {Image, Text, View} from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import React from 'react';
 import Colors from '../Colors';
+import {UserDTO} from '../../dto';
 
-const UserCard = () => {
+type IProp = {
+  user: UserDTO;
+};
+
+const UserCard = ({user}: IProp) => {
   return (
     <View
       style={{
@@ -24,7 +29,7 @@ const UserCard = () => {
         }}>
         <Image
           style={{width: 50, height: 50, borderRadius: 25}}
-          source={{uri: 'https://avatars.githubusercontent.com/u/48654030?v=4'}}
+          source={{uri: user.user.picture}}
         />
 
         <View style={{marginVertical: 'auto', backgroundColor: '#1F222A'}}>
@@ -35,7 +40,7 @@ const UserCard = () => {
               fontWeight: '600',
               color: Colors.dark.text,
             }}>
-            Andrew Ainsley
+            {user.user.name}
           </Text>
           <Text
             style={{
@@ -44,7 +49,7 @@ const UserCard = () => {
               fontSize: 12,
               fontWeight: '600',
             }}>
-            Admin | Joined 203-05-05
+            {user.role} | {user.user.email}
           </Text>
         </View>
       </View>

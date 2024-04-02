@@ -1,3 +1,4 @@
+import {UserDTO} from '../dto';
 import {Organization, User} from '../types';
 import firestore from '@react-native-firebase/firestore';
 
@@ -94,6 +95,40 @@ export default {
         success: false,
         message: err,
         org: null,
+      };
+    }
+  },
+
+  getOrganizationsUser: async (users: {role: string; userId: string}[]) => {
+    try {
+      const out: UserDTO[] = [];
+
+      for (let i = 0; i < users.length; i++) {
+        const _doc = await firestore()
+          .collection('Users')
+          .doc(users[i].userId)
+          .get();
+
+        if (!_doc.exists) {
+          continue;
+        }
+
+        out.push({
+          user: _doc.data() as User,
+          role: users[i].role,
+        });
+      }
+
+      return {
+        success: true,
+        message: '',
+        users: out,
+      };
+    } catch (err) {
+      return {
+        success: false,
+        message: err,
+        users: [],
       };
     }
   },

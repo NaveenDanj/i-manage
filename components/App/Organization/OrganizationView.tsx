@@ -1,13 +1,45 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-native/no-inline-styles */
 import {Text, TouchableOpacity, View} from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Colors from '../../Colors';
 // import OrganizationCard from '../OrganizationCard';
 import Octicons from 'react-native-vector-icons/Octicons';
 import {useNavigation} from '@react-navigation/native';
+import OrganizationService from '../../../services/Organization.Service';
+import {useSelector} from 'react-redux';
+import {RootState} from '../../../store';
+import {Organization} from '../../../types';
+import OrganizationCard from '../OrganizationCard';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const OrganizationView = () => {
   const navigation = useNavigation();
+  const currentUser = useSelector((state: RootState) => state.user.currentUser);
+  const [orgs, setOrgs] = useState<Organization[]>([]);
+  const [currentOrg, setCurrentOrg] = useState<string>('');
+
+  useEffect(() => {
+    const fetchOrgs = async () => {
+      if (!currentUser) {
+        return;
+      }
+      const res = await OrganizationService.getUserOrganizations(
+        currentUser?.organizations,
+      );
+      setOrgs(res.orgs);
+      const org = await AsyncStorage.getItem('currentOrg');
+
+      if (!org) {
+        setCurrentOrg('');
+        return;
+      }
+
+      setCurrentOrg(org);
+    };
+
+    fetchOrgs();
+  }, []);
 
   return (
     <View>
@@ -44,7 +76,7 @@ const OrganizationView = () => {
 
       <View
         style={{
-          display: 'flex',
+          display: orgs.length === 0 ? 'flex' : 'none',
           justifyContent: 'center',
           alignItems: 'center',
           gap: 20,
@@ -66,12 +98,15 @@ const OrganizationView = () => {
         </Text>
       </View>
 
-      {/* <View style={{display: 'flex', gap: 20}}>
-        <OrganizationCard selected={true} />
-        <OrganizationCard selected={false} />
-        <OrganizationCard selected={false} />
-        <OrganizationCard selected={false} />
-      </View> */}
+      <View style={{display: 'flex', gap: 20}}>
+        {orgs.map(_item => (
+          <OrganizationCard
+            key={_item.uid}
+            org={_item}
+            selected={currentOrg === _item.uid}
+          />
+        ))}
+      </View>
     </View>
   );
 };

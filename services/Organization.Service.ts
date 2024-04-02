@@ -22,7 +22,27 @@ export default {
         collections: [],
       };
 
-      await firestore().collection('Organizations').add(org);
+      const res = await firestore().collection('Organizations').add(org);
+
+      await res.update({
+        uid: res.id,
+      });
+
+      for (let i = 0; i < users.length; i++) {
+        await firestore()
+          .collection('Users')
+          .doc(users[i].uid)
+          .update({
+            organizations: firestore.FieldValue.arrayUnion(res.id),
+          });
+      }
+
+      await firestore()
+        .collection('Users')
+        .doc(currentUser.uid)
+        .update({
+          organizations: firestore.FieldValue.arrayUnion(res.id),
+        });
 
       return {
         success: true,
@@ -32,6 +52,27 @@ export default {
       return {
         success: false,
         message: err,
+      };
+    }
+  },
+
+  getUserOrganizations: async (uids: string[]) => {
+    try {
+      const res = await firestore()
+        .collection('Organizations')
+        .where(firestore.FieldPath.documentId(), 'in', uids)
+        .get();
+
+      return {
+        success: true,
+        message: '',
+        orgs: res.docs.map(item => item.data() as Organization),
+      };
+    } catch (err) {
+      return {
+        success: false,
+        message: err,
+        orgs: [],
       };
     }
   },

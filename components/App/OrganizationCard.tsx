@@ -1,17 +1,25 @@
 /* eslint-disable react-native/no-inline-styles */
-import {Text, View} from 'react-native';
+import {Text, Touchable, TouchableOpacity, View} from 'react-native';
 import Octicons from 'react-native-vector-icons/Octicons';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import React from 'react';
 import Colors from '../Colors';
+import {Organization} from '../../types';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface IProp {
   selected: boolean;
+  org: Organization;
 }
 
-const OrganizationCard = ({selected}: IProp) => {
+const OrganizationCard = ({selected, org}: IProp) => {
+  const handleSelect = async () => {
+    await AsyncStorage.setItem('currentOrg', org.uid + '');
+  };
+
   return (
-    <View
+    <TouchableOpacity
+      onPress={handleSelect}
       style={{
         borderColor: selected ? '#246BFD' : '',
         borderWidth: selected ? 2 : 0,
@@ -51,7 +59,7 @@ const OrganizationCard = ({selected}: IProp) => {
               fontWeight: '600',
               color: Colors.dark.text,
             }}>
-            Dupatha Boarding Place
+            {org.name}
           </Text>
           <Text
             style={{
@@ -60,7 +68,7 @@ const OrganizationCard = ({selected}: IProp) => {
               fontSize: 12,
               fontWeight: '600',
             }}>
-            12 Users | Created 203-05-05
+            {org.users.length} Users | Created 2023-05-05
           </Text>
         </View>
       </View>
@@ -72,7 +80,7 @@ const OrganizationCard = ({selected}: IProp) => {
           <Fontisto name="radio-btn-passive" size={20} color="#246BFD" />
         )}
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

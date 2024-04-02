@@ -23,14 +23,14 @@ const Login = () => {
       console.log(fetchCurrentUser);
       if (fetchCurrentUser.success && fetchCurrentUser.user) {
         const user: User = {
-          email: fetchCurrentUser.user.user.email,
-          given_name: fetchCurrentUser.user.user.givenName + '',
-          family_name: fetchCurrentUser.user.user.familyName + '',
-          name: fetchCurrentUser.user.user.name + '',
-          picture: fetchCurrentUser.user.user.photo + '',
-          phoneNumber: fetchCurrentUser.user.user.email,
-          uid: fetchCurrentUser.user.user.id,
-          organizations: [],
+          email: fetchCurrentUser.user.email,
+          given_name: fetchCurrentUser.user.given_name + '',
+          family_name: fetchCurrentUser.user.family_name + '',
+          name: fetchCurrentUser.user.name + '',
+          picture: fetchCurrentUser.user.picture + '',
+          phoneNumber: fetchCurrentUser.user.email,
+          uid: fetchCurrentUser.user.uid,
+          organizations: fetchCurrentUser.user.organizations,
         };
 
         dispatch(setUser(user));

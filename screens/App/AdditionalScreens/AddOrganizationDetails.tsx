@@ -61,7 +61,11 @@ const AddOrganizationDetails = () => {
                 <SearchUserHeader handleSetUsers={handelSetUsers} />
               )}
               ListFooterComponent={
-                <SearchUserFooter users={users} name={name} />
+                <SearchUserFooter
+                  users={users}
+                  name={name}
+                  currentUser={currentUser}
+                />
               }
             />
           </View>

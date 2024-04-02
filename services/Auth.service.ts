@@ -51,9 +51,24 @@ export default {
     try {
       const res = await GoogleSignin.getCurrentUser();
 
+      if (!res) {
+        return {
+          success: false,
+          user: null,
+          message: 'Error while fetching current user Information',
+        };
+      }
+
+      const additionalData = (
+        await firestore()
+          .collection('Users')
+          .where('email', '==', res?.user.email)
+          .get()
+      ).docs[0].data();
+
       return {
         success: true,
-        user: res,
+        user: additionalData,
         message: '',
       };
     } catch (err) {

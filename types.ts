@@ -10,14 +10,10 @@ export type User = {
 };
 
 export type Organization = {
-  uid: string;
+  uid?: string;
   name: string;
-  users: {
-    [userId: string]: _User;
-  };
-  collections: {
-    [collectionId: string]: boolean;
-  };
+  users: _User[];
+  collections: string[];
 };
 
 export type Collection = {
@@ -28,9 +24,7 @@ export type Collection = {
   totalAmount: number;
   totalExpense: number;
   totalIncome: number;
-  users: {
-    [userId: string]: _User;
-  };
+  users: _User[];
   expenses: Expense[];
   payments: Payment[];
 };

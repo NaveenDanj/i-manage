@@ -17,6 +17,7 @@ export type Organization = {
 };
 
 export type Collection = {
+  uid?: string;
   organizationId: string;
   name: string;
   type: string;
@@ -53,6 +54,14 @@ export type Transaction = {
   type: string;
   date: Date;
   note: string;
+};
+
+export type Notification = {
+  userId: string;
+  type: string;
+  header: string;
+  content: string;
+  date: Date;
 };
 
 type _User = {

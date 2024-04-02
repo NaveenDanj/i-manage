@@ -76,4 +76,25 @@ export default {
       };
     }
   },
+
+  getOrganization: async (uid: string) => {
+    try {
+      const res = await firestore()
+        .collection('Organizations')
+        .where(firestore.FieldPath.documentId(), '==', uid)
+        .get();
+
+      return {
+        success: true,
+        message: '',
+        org: res.docs[0].data() as Organization,
+      };
+    } catch (err) {
+      return {
+        success: false,
+        message: err,
+        org: null,
+      };
+    }
+  },
 };

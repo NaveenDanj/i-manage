@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, {useEffect} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Colors from '../../components/Colors';
 import DashboardTab from './Tabs/DashboardTab';
@@ -8,10 +9,36 @@ import IconOcticons from 'react-native-vector-icons/Octicons';
 import NotificationTab from './Tabs/NotificationTab';
 import UserTab from './Tabs/UserTab';
 import OrganizationTab from './Tabs/Organization';
+import {useDispatch} from 'react-redux';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import OrganizationService from '../../services/Organization.Service';
+import {setOrganization} from '../../store/OrganizationSlice';
 
 const Tab = createBottomTabNavigator();
 
 const TabHome = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const loadData = async () => {
+      const org = await AsyncStorage.getItem('currentOrg');
+
+      if (!org) {
+        return;
+      }
+
+      const orgData = await OrganizationService.getOrganization(org);
+
+      if (!orgData.org) {
+        return;
+      }
+
+      dispatch(setOrganization(orgData.org));
+    };
+
+    loadData();
+  }, []);
+
   return (
     <Tab.Navigator
       screenOptions={{

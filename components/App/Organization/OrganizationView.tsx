@@ -16,6 +16,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const OrganizationView = () => {
   const navigation = useNavigation();
   const currentUser = useSelector((state: RootState) => state.user.currentUser);
+  const currentOrganization = useSelector(
+    (state: RootState) => state.orgnaization.currentOrganization,
+  );
   const [orgs, setOrgs] = useState<Organization[]>([]);
   const [currentOrg, setCurrentOrg] = useState<string>('');
 
@@ -34,12 +37,15 @@ const OrganizationView = () => {
         setCurrentOrg('');
         return;
       }
-
       setCurrentOrg(org);
     };
 
     fetchOrgs();
   }, []);
+
+  useEffect(() => {
+    setCurrentOrg(currentOrganization?.uid + '');
+  }, [currentOrganization]);
 
   return (
     <View>

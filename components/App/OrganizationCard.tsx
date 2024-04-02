@@ -1,11 +1,13 @@
 /* eslint-disable react-native/no-inline-styles */
-import {Text, Touchable, TouchableOpacity, View} from 'react-native';
+import {Text, TouchableOpacity, View} from 'react-native';
 import Octicons from 'react-native-vector-icons/Octicons';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import React from 'react';
 import Colors from '../Colors';
 import {Organization} from '../../types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useDispatch} from 'react-redux';
+import {setOrganization} from '../../store/OrganizationSlice';
 
 interface IProp {
   selected: boolean;
@@ -13,8 +15,11 @@ interface IProp {
 }
 
 const OrganizationCard = ({selected, org}: IProp) => {
+  const dispatch = useDispatch();
+
   const handleSelect = async () => {
     await AsyncStorage.setItem('currentOrg', org.uid + '');
+    dispatch(setOrganization(org));
   };
 
   return (

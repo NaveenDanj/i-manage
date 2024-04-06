@@ -56,9 +56,11 @@ const UserCard = ({user}: IProp) => {
 
       <View
         style={{
-          marginTop: 3,
           backgroundColor: '#1F222A',
           marginVertical: 'auto',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
         }}>
         <MaterialIcons name="expand-circle-down" size={24} color="#30D475" />
       </View>

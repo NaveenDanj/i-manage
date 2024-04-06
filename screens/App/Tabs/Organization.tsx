@@ -6,8 +6,14 @@ import Colors from '../../../components/Colors';
 import OrganizationView from '../../../components/App/Organization/OrganizationView';
 import CollectionView from '../../../components/App/Organization/CollectionView';
 import OrganizationUsersView from '../../../components/App/Organization/OrganizationUsersView';
+import {useSelector} from 'react-redux';
+import {RootState} from '../../../store';
 
 const OrganizationTab = () => {
+  const currentOrg = useSelector(
+    (state: RootState) => state.orgnaization.currentOrganization,
+  );
+
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
@@ -16,7 +22,7 @@ const OrganizationTab = () => {
 
       <CollectionView />
 
-      <OrganizationUsersView />
+      {currentOrg && <OrganizationUsersView />}
 
       <View
         style={{
